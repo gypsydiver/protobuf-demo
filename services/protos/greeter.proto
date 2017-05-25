@@ -1,0 +1,22 @@
+syntax = "proto3";
+package greeter;
+
+option go_package = "github.com/gypsydiver/protobuf-demo/services/greeter/gen";
+
+service Greeter {
+    rpc Greet(Info) returns (Greeting) {}
+}
+
+message Info {
+    string name = 1;
+    string expression = 2;
+    repeated Peep peeps = 3;
+}
+
+message Greeting {
+    string body = 1;
+}
+
+message Peep {
+    string name = 1;
+}
