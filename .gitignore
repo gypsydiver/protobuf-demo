@@ -1,0 +1,6 @@
+# Python
+__pycache__/
+
+# GO
+vendor/
+*.pb.go
