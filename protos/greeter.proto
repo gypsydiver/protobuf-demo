@@ -1,10 +1,17 @@
 syntax = "proto3";
-package greeter;
+package entrypoint;
 
 option go_package = "github.com/gypsydiver/protobuf-demo/services/greeter/gen";
 
+import "google/api/annotations.proto";
+
 service Greeter {
-    rpc Greet(Info) returns (Greeting) {}
+    rpc entrypoint_greet(Info) returns (Greeting) {
+        option (google.api.http) = {
+            post: "/api/v1/greet"
+            body: "*"
+        };
+    }
 }
 
 message Info {
