@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "github.com/gypsydiver/protobuf-demo/services/heroes/gen";
+
+service Shield {
+    rpc GetHero(Hero) returns (Hero) {};
+}
+
+message Person {
+    string name = 1;
+    int64 age = 2;
+    string nickname = 3;
+}
+
+message Hero {
+    repeated string superpower = 1;
+    Person identity = 2;
+    string alias = 3;
+}
