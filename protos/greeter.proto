@@ -6,11 +6,15 @@ option go_package = "github.com/gypsydiver/protobuf-demo/services/greeter/gen";
 import "google/api/annotations.proto";
 
 service Greeter {
-    rpc entrypoint_greet(Info) returns (Greeting) {
+    rpc controllers_greet(Info) returns (Greeting) {
         option (google.api.http) = {
             post: "/api/v1/greet"
             body: "*"
         };
+    }
+
+    rpc controllers_check(Empty) returns (OK) {
+        option (google.api.http).get = "/api/v1/health";
     }
 }
 
@@ -26,4 +30,9 @@ message Greeting {
 
 message Peep {
     string name = 1;
+}
+
+message Empty {}
+message OK {
+    bool ok = 1;
 }
