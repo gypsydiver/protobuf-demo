@@ -12,7 +12,7 @@ import (
 
 type greeterServer struct{}
 
-func (s *greeterServer) Greet(ctx xContext.Context,
+func (s *greeterServer) ControllersGreet(ctx xContext.Context,
 	info *gen.Info) (*gen.Greeting, error) {
 
 	log.WithFields(log.Fields{
@@ -26,6 +26,12 @@ func (s *greeterServer) Greet(ctx xContext.Context,
 	return &gen.Greeting{
 		Body: body,
 	}, nil
+}
+
+func (s *greeterServer) ControllersCheck(ctx xContext.Context,
+	empty *gen.Empty) (*gen.OK, error) {
+	// okayness checks
+	return &gen.OK{Ok: true}, nil
 }
 
 func generateGreeting(info *gen.Info) (greeting string) {
@@ -53,8 +59,16 @@ func generateGreeting(info *gen.Info) (greeting string) {
 
 // Start creates and instance of the greeter service and runs it
 func Start() {
-	lis, _ := net.Listen("tcp", "localhost:5000")
+	addr := "localhost:5000"
+	lis, err := net.Listen("tcp", addr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Info("Listening on: " + addr)
 	srv := grpc.NewServer()
 	gen.RegisterGreeterServer(srv, &greeterServer{})
-	srv.Serve(lis)
+	serveErr := srv.Serve(lis)
+	if serveErr != nil {
+		log.Fatal(serveErr)
+	}
 }
