@@ -23,7 +23,7 @@ This should generate a file called greeter.swagger.json containing the Swagger e
 
     pip install -r requirements.txt
 
-Edit ```services/restful_greeter/main.py``` to point to our generated Swagger definition and let zalando's connexion do the rest. :)
+Edit ```services/restful_greeter/main.py``` to point to our generated Swagger definition and let [Zalando's connexion](https://github.com/zalando/connexion) do the rest. :)
 
 
 ### Resources
