@@ -1,5 +1,5 @@
-import connexion
 import logging
+import connexion
 from helpers import dotcase_resolver
 
 if __name__ == "__main__":
@@ -10,6 +10,5 @@ if __name__ == "__main__":
                         swagger_json=True # Default but left for demonstration purposes
                        )
     app.add_api('greeter.swagger.json',
-                resolver=connexion.resolver.Resolver(dotcase_resolver)
-               )
+                resolver=connexion.resolver.Resolver(dotcase_resolver))
     app.run()

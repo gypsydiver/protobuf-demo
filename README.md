@@ -3,12 +3,19 @@ Protocol Buffers for the masses!
 
 Protocol Buffers is a Google made encoding mechanism that offers increased speed over the wire and easy to define contracts. These allow the automation of several processes through code generation.
 
-### For Go services
+### For Go services (greeter, heroes)
 The included Makefile should have you covered:
 
 make import_path=path/to/protos/folder service_proto=service-name
 
 Then just ./service-name to run the rpc server
+
+### Python restful greeter
+
+- generate swagger file in a known location...
+install reqs
+zalando's connexion does the rest
+
 
 
 ### Resources
