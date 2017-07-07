@@ -12,10 +12,18 @@ Then just ./service-name to run the rpc server
 
 ### Python restful greeter
 
-- generate swagger file in a known location...
-install reqs
-zalando's connexion does the rest
+Generate swagger file from protos
 
+    go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+Then:
+
+    protoc --swagger_out=logtostderr=true:services/restful_greeter --proto_path=protos protos/greeter.proto
+
+This should generate a file called greeter.swagger.json containing the Swagger equivalent of our RPC service definition.
+
+    pip install -r requirements.txt
+
+Edit services/restful_greeter/main.py to point to our generated Swagger definition and let zalando's connexion does the rest. :)
 
 
 ### Resources
